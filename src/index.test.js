@@ -1,10 +1,12 @@
 import {xhr_get} from  './index.js'
 
+//https://jestjs.io/docs/en/asynchronous#promises
 //testing an async - using real api
 test('testing an async', () => {
     const method = 'GET'
     const url = 'https://jsonplaceholder.typicode.com/posts/1'
 
+    //if you omit this return statement, your test will complete before the promise returned
     return xhr_get(method,url).then(data => {
         expect(data).toEqual({
             "userId": 1,
