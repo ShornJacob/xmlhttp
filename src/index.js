@@ -1,6 +1,11 @@
+
+//https://stackoverflow.com/questions/12421860/returning-xmlhttp-responsetext-from-function-as-return
+//Cant return xhr response since the function will finish before 
+//So pass a callback to execute on suucess
+
 //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response#Example
 
-const getAsyncData = () => {
+const getAsyncData = (cb) => {
 
     // create an XMLHttpRequest object,
     var xhr = new XMLHttpRequest()
@@ -8,7 +13,7 @@ const getAsyncData = () => {
     xhr.onreadystatechange = () => {
     //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
         if (xhr.readyState === 4 ) {
-            console.log(xhr.response)
+            cb(xhr.response)
         }
     }
 
@@ -21,4 +26,9 @@ const getAsyncData = () => {
 
 }
 
-getAsyncData()
+const handleSuccess = (response) => console.log(response)
+
+getAsyncData(handleSuccess)
+
+//getAsyncData, the funciton itself would return undefined, as function falls finishes without waiting for the response
+
