@@ -1,12 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response#Example
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const getAsyncData = () => {
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+    // create an XMLHttpRequest object,
+    var xhr = new XMLHttpRequest()
+
+    xhr.onreadystatechange = () => {
+    //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+        if (xhr.readyState === 4 ) {
+            console.log(xhr.response)
+        }
+    }
+
+    const url = "https://jsonplaceholder.typicode.com/posts/1"
+
+    //open a url , true is for async
+    xhr.open("GET", url,true)
+
+    xhr.send()
+
+}
+
+getAsyncData()
