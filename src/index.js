@@ -27,6 +27,7 @@ const xhr_get = async (method,url) => {
 
 const data = xhr_get('GET','https://jsonplaceholder.typicode.com/posts/1')
 console.log(data) //this displays the Promise Object
+console.dir(data)
 
 //this diplays the data
 xhr_get('GET','https://jsonplaceholder.typicode.com/posts/1').then( (data) => console.log(data))
