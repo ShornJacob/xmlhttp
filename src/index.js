@@ -15,7 +15,7 @@ const xhr_get = async (method,url) => {
     try {
         let result
         result = await xhrRequest(method,url)
-        return result
+        return JSON.parse(result)
    
     }catch (e) {
         return "Error"
