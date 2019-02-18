@@ -1,34 +1,17 @@
+//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget/onload#Example
 
-//https://stackoverflow.com/questions/12421860/returning-xmlhttp-responsetext-from-function-as-return
-//Cant return xhr response since the function will finish before 
-//So pass a callback to execute on suucess
+var xmlhttp = new XMLHttpRequest(),
 
-//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/response#Example
+method = 'GET',
 
-const getAsyncData = (cb) => {
+url = 'https://jsonplaceholder.typicode.com/posts/1';
 
-    // create an XMLHttpRequest object,
-    var xhr = new XMLHttpRequest()
 
-    xhr.onreadystatechange = () => {
-    //https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
-        if (xhr.readyState === 4 ) {
-            cb(xhr.response)
-        }
-    }
+xmlhttp.open(method, url, true);
 
-    const url = "https://jsonplaceholder.typicode.com/posts/1"
+xmlhttp.onload = function () {
+    console.log(xmlhttp.response)
+};
 
-    //open a url , true is for async
-    xhr.open("GET", url,true)
-
-    xhr.send()
-
-}
-
-const handleSuccess = (response) => console.log(response)
-
-getAsyncData(handleSuccess)
-
-//getAsyncData, the funciton itself would return undefined, as function falls finishes without waiting for the response
+xmlhttp.send();
 
